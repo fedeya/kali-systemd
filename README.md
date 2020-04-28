@@ -12,12 +12,12 @@ docker pull fedeya/kali-systemd
 
 ```bash
 docker run -d \
-  --name kali \ 
+  --name kali \
   --cap-add SYS_ADMIN \
   --network host \
   --privileged \
   -e DISPLAY=$DISPLAY \
-  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \ 
+  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   fedeya/kali-systemd \
   systemd.unit=emergency.service
@@ -31,7 +31,7 @@ docker run -d \
   --name kali \
   --network host \
   --privileged \
-  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \ 
+  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
   fedeya/kali-systemd \
   systemd.unit=emergency.service 
 ```
