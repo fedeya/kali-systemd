@@ -23,6 +23,9 @@ RUN apt-get -y update && apt-get -y upgrade && \
 RUN apt-get autoremove -y && \
   apt-get clean
 
+# Copy Bashrc
+COPY bashrc /root/.bashrc
+
 # Run Systemd
 
 RUN cd /lib/systemd/system/sysinit.target.wants/; ls | grep -v systemd-tmpfiles-setup | xargs rm -f $1 \
