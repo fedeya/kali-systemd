@@ -1,23 +1,29 @@
 FROM kalilinux/kali-rolling
 
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Update Repos and Install Tools 
+
 RUN apt-get -y update && apt-get -y upgrade && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  apt-get install -y \
   kali-linux-core \
-  burpsuite \
-  metasploit-framework \
+  kali-tools-top10 \
   dirb \
   gobuster \
-  nmap \
   git \
   pciutils \
-  beef \
+  beef-xss \
   dirbuster \
   wfuzz \
-  
+  iputils-ping \
+  zaproxy \
+  net-tools \
   bash-completion
 
 RUN apt-get autoremove -y && \
   apt-get clean
+
+# Run Systemd
 
 RUN cd /lib/systemd/system/sysinit.target.wants/; ls | grep -v systemd-tmpfiles-setup | xargs rm -f $1 \
   rm -f /lib/systemd/system/multi-user.target.wants/*;\
